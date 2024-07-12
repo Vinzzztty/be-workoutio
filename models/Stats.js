@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const statsSchema = new mongoose.Schema({
-  arm: { type: Number, required: true },
-  legs: { type: Number, required: true },
-  abs: { type: Number, required: true },
-  chest: { type: Number, required: true },
-  glutes: { type: Number, required: true },
-  back: { type: Number, required: true }
+    arm: { type: Number, required: false },
+    legs: { type: Number, required: false },
+    abs: { type: Number, required: false },
+    chest: { type: Number, required: false },
+    glutes: { type: Number, required: false },
+    back: { type: Number, required: false },
 });
 
-module.exports = mongoose.model('Stats', statsSchema);
+module.exports = mongoose.model("Stats", statsSchema);

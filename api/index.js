@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/accounts", accountRoutes);
 app.use("/plans", planRoutes);
 app.use("/days", dayRoutes);
-app.use("/stats", statsRoutes);
+app.use("/api/stats", statsRoutes);
 app.use("/replays", replayRoutes);
 
 app.get("/", (req, res) => {
