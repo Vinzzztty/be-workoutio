@@ -11,6 +11,7 @@ const planRoutes = require("../routes/Plan");
 const statsRoutes = require("../routes/Stats");
 const replayRoutes = require("../routes/Replay");
 const newPlanRoutes = require("../routes/NewPlans");
+const taskRoutes= require('../routes/Task')
 
 const gemini_api_key = "AIzaSyAlNQUIZAuPtajMpJFwlf8oV7yDwPnGhP4";
 const googleAI = new GoogleGenerativeAI(gemini_api_key);
@@ -45,7 +46,7 @@ app.use("/days", dayRoutes);
 app.use("/api/stats", statsRoutes);
 app.use("/api/replays", replayRoutes);
 app.use("/newPlans", newPlanRoutes);
-
+app.use("/task",taskRoutes);
 app.get("/", (req, res) => {
     res.status(200).json({
         message: "Hello World",
