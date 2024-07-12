@@ -87,7 +87,7 @@ const generateAiPlan = async (req, res) => {
             });
 
             // Construct prompt text based on user input
-            const promptText = `Hi, I am weight ${weight}, and height ${height}. I want to create a 7-day exercise plan.\nThe exercise targets: ${muscle_target.join(
+            const promptText = `Hi, I am weight ${weight}, and height ${height}. I want to create a day exercise plan.\nThe exercise targets: ${muscle_target.join(
                 ", "
             )}.\nPlease generate a detailed 7-day exercise plan with bullet points for each day, clearly labeled as Day 1, Day 2, etc. Each day should include the muscle groups targeted, the workouts, and the repetitions.`;
 
@@ -156,7 +156,7 @@ const generateAiPlan = async (req, res) => {
         res.status(200).json({
             status: "success",
             message: "Exercise plan generated successfully",
-            data: structuredPlan,
+            data: structuredPlan[2],
         });
     } catch (error) {
         // Handle errors
