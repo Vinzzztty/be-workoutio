@@ -25,7 +25,7 @@ app.use("/api/accounts", accountRoutes);
 app.use("/plans", planRoutes);
 app.use("/days", dayRoutes);
 app.use("/api/stats", statsRoutes);
-app.use("/replays", replayRoutes);
+app.use("/api/replays", replayRoutes);
 
 app.get("/", (req, res) => {
     res.status(200).json({
