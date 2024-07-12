@@ -1,17 +1,23 @@
-const path = require("path");
 const { google } = require("googleapis");
 const fs = require("fs");
+const path = require("path");
 require("dotenv").config();
 
-// Google Drive credentials from environment variables
+// Decode the Base64 encoded JSON credentials
+const decodedCredentials = Buffer.from(
+    process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+    "base64"
+).toString("utf8");
+const pkey = JSON.parse(decodedCredentials);
+
 const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
 
 // Function to authorize with Google Drive
 async function authorize() {
     const jwtClient = new google.auth.JWT(
-        process.env.GOOGLE_CLIENT_EMAIL,
+        pkey.client_email,
         null,
-        process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"), // Handle newlines in the private key
+        pkey.private_key.replace(/\\n/g, "\n"), // Handle newlines in the private key
         SCOPES
     );
     await jwtClient.authorize();
@@ -49,20 +55,14 @@ async function uploadFile(authClient, filePath, fileName) {
     return fileLink;
 }
 
+// Function to handle file upload request
 exports.upload = async (req, res) => {
-    if (!req.file) {
-        return res.status(400).send("No file uploaded.");
-    }
+    const filePath = req.body.filePath; // File path should be provided in the request body
+    const fileName = path.basename(filePath);
 
     try {
         const authClient = await authorize();
-        const filePath = path.join(__dirname, "../", req.file.path);
-        const fileName = req.file.originalname;
-
         const fileLink = await uploadFile(authClient, filePath, fileName);
-
-        // Delete the file from the server after uploading to Drive
-        fs.unlinkSync(filePath);
 
         res.status(200).send({ link: fileLink });
     } catch (error) {
