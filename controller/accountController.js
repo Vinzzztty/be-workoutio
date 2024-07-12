@@ -49,6 +49,7 @@ const login = async (req, res) => {
         res.status(200).json({
             message: "Login successful",
             data: { username: account.username },
+            status: 200,
         });
     } catch (error) {
         res.status(500).json({
