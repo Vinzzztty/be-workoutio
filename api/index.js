@@ -1,12 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-const connectDB = require("./config/dbconfig");
+const connectDB = require("../config/dbconfig");
 
-const accountRoutes = require("./routes/Account");
-const dayRoutes = require("./routes/Day");
-const planRoutes = require("./routes/Plan");
-const statsRoutes = require("./routes/Stats");
-const replayRoutes = require("./routes/Replay");
+const accountRoutes = require("../routes/Account");
+const dayRoutes = require("../routes/Day");
+const planRoutes = require("../routes/Plan");
+const statsRoutes = require("../routes/Stats");
+const replayRoutes = require("../routes/Replay");
 
 // Load environment variables
 require("dotenv").config();
