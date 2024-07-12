@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
+// models/NewPlan.js
 
-const exerciseSchema = new mongoose.Schema({
-    name: { type: String, required: true},
-    sets: { type: Number, required: true},
-    reps: { type: Number, required: true}
-});
+const mongoose = require("mongoose");
+const Exercise = require("./Exercise");
 
 const newPlanSchema = new mongoose.Schema({
-    day: { type: String, required: true},
-    exercises: [exerciseSchema]
+    day: { type: Number, required: true },
+    promptText: { type: String, required: true },
+    exercises: [{ type: mongoose.Schema.Types.ObjectId, ref: "Exercise" }], // Reference to Exercise schema
 });
 
-module.exports = mongoose.model('NewPlan', newPlanSchema);
+const NewPlan = mongoose.model("NewPlan", newPlanSchema);
+
+module.exports = NewPlan;
