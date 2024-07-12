@@ -141,7 +141,7 @@ const generateAiPlan = async (req, res) => {
                     repetitions = repetitionsPart.match(/\d+/g).map(Number);
                 }
                 structuredPlan[currentDay].workout.push(workoutName);
-                structuredPlan[currentDay].repetitions.push(repetitions[1]);
+                structuredPlan[currentDay].repetitions.push(repetitions);
             }
         });
 
